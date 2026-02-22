@@ -1,11 +1,10 @@
 import express from "express"
+import { router } from "../routes/routes.ts"
 
 const app = express()
 
 app.use(express.json())
 
-app.get("/", (req, res) => {
-    res.send("API rodando")
-})
+app.use(router)
 
 export { app }
