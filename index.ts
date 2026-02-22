@@ -1,4 +1,4 @@
-import { app } from "./src/server/server.js"
+import { app } from "./src/server/server.ts"
 
 const PORT = 3000
 
