@@ -1,10 +1,22 @@
-import express from "express"
-import { router } from "../routes/routes.ts"
+import dotenv from "dotenv";
+import express from "express";
 
-const app = express()
+const app = express();
+app.use(express.json());
 
-app.use(express.json())
+dotenv.config({
+    path: "./src/connection/env/.env",
+    quiet: true
+});
+const PORT = Number(process.env.PORT);
 
-app.use(router)
+export async function startServer() {
+    try {
+        app.listen(PORT, () => {
+        console.log(`🚀 Server rodando na porta ${PORT} \n`);
+        });
 
-export { app }
+    } catch (error) {
+        console.error("❌ Falha ao iniciar aplicação:", error);
+    }
+}

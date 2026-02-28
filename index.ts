@@ -1,7 +1,13 @@
-import { app } from "./src/server/server.ts"
+import { startServer } from "./src/server/server";
+import { connectDatabase } from "./src/connection/database/connect";
 
-const PORT = 3000
+async function bootstrap() {
+    // conexão
+    console.log("🔌 Conectando ao banco de dados...");
+    await connectDatabase();
+    // servidor
+    console.log("🔌 Iniciando servidor...");
+    await startServer()
+}
 
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta: ${PORT}`)
-})
+bootstrap();
