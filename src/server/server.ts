@@ -1,8 +1,12 @@
 import dotenv from "dotenv";
 import express from "express";
+import {router} from "../routes/routes.ts"; // 👈 ajuste o caminho se necessário
 
 const app = express();
 app.use(express.json());
+
+// 🔗 Ligação das rotas
+app.use("/api", router);
 
 dotenv.config({
     path: "./src/connection/env/.env",
