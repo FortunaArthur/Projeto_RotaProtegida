@@ -1,3 +1,11 @@
+import dotenv from "dotenv";
+import jwt from "jsonwebtoken"
+
+dotenv.config({
+    path: "./src/connection/env/.env",
+    quiet: true
+});
+
 export function loginService(email: string) {
     if (!email) {
         throw new Error("Email obrigatório")
@@ -7,8 +15,14 @@ export function loginService(email: string) {
         throw new Error("Domínio não permitido")
     }
 
+    const token = jwt.sign(
+        { email },
+        process.env.JWT_SECRET as string,
+        { expiresIn: "1h" }
+    )
+
     return {
         mensagem: "Login permitido",
-        token: "TOKEN123"
+        token
     }
 }
